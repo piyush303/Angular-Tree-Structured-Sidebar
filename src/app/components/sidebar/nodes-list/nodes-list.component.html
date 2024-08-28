@@ -1,0 +1,20 @@
+<ul>
+  @for (node of nodes(); track node.id) {
+  <li [ngClass]="node.children ? 'has-child' : 'no-child'">
+    @if (node.children) {
+    <span class="icon" (click)="onClick()">
+      {{ isExpaned() ? "<" : ">" }}
+    </span>
+    } @else {
+    <span class="icon">
+      {{ "*" }}
+    </span>
+    }
+
+    <a [href]="node.link">{{ node.label }} - {{ isExpaned() }}</a>
+  </li>
+
+  @if (node.children && isExpaned() ) {
+  <app-nodes-list [nodes]="node.children" />
+  } }
+</ul>
